@@ -3,10 +3,12 @@ import ProductModel from "../models/product.model.js";
 
 export default class ProductController {
   getProduct(req, res) {
-    console.log(ProductModel.get());
+    const products = ProductModel.get();
 
-    return res.sendFile(
-      path.join(path.resolve(), "src/views", "products.html")
-    );
+    return res.render("products", { products });
+
+    // return res.sendFile(
+    //   path.join(path.resolve(), "src/views", "products.html")
+    // );
   }
 }
