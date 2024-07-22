@@ -1,5 +1,5 @@
 import express from "express";
-import productController from "./src/controllers/products.controller.js";
+import productController from "./src/controllers/product.controller.js";
 const port = 3100;
 
 const app = express();
