@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is an Inventory Management Application built using Node Js ",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,5 +13,8 @@
     "Express"
   ],
   "author": "Saurabh Tiwari",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
