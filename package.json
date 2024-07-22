@@ -1,0 +1,16 @@
+{
+  "name": "inventory-management-app",
+  "version": "1.0.0",
+  "description": "This is an Inventory Management Application built using Node Js ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "Js",
+    "Express"
+  ],
+  "author": "Saurabh Tiwari",
+  "license": "ISC"
+}
