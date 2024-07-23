@@ -11,4 +11,14 @@ export default class ProductController {
     //   path.join(path.resolve(), "src/views", "products.html")
     // );
   }
+
+  getNewProductView(req, res) {
+    return res.render("new-product");
+  }
+
+  addNewProduct(req, res) {
+    ProductModel.add(req.body);
+    const products = ProductModel.get();
+    return res.render("product", { products });
+  }
 }
