@@ -13,7 +13,7 @@ export default class ProductController {
   }
 
   getNewProductView(req, res) {
-    return res.render("new-product");
+    return res.render("new-product", { erorMessage: null });
   }
 
   addNewProduct(req, res) {

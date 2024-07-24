@@ -2,13 +2,14 @@ import express from "express";
 import expressEjsLayouts from "express-ejs-layouts";
 import path from "path";
 import productController from "./src/controllers/product.controller.js";
+import validateRequest from "./src/middlewares/validation.middleware.js";
 const port = 3100;
 
 const app = express();
 
 // for parsing the form body
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // for configuring the view engine
 app.set("view engine", "ejs");
@@ -23,7 +24,7 @@ app.use(express.static("src/views"));
 
 app.get("/", productControllerClass.getProduct);
 app.get("/new", productControllerClass.getNewProductView);
-app.post("/", productControllerClass.addNewProduct);
+app.post("/", validateRequest, productControllerClass.addNewProduct);
 
 app.listen(port, () => {
   console.log("server is up & listening on port", port);
