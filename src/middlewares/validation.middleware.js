@@ -1,23 +1,31 @@
-export default function validateRequest(req, res, next) {
-  const { name, price, imageUrl } = req.body;
-  let error = [];
+import { body, validationResult } from "express-validator";
 
-  if (!name || name.trim() == "") {
-    error.push("name can not be set empty");
-  }
+export default async function validateRequest(req, res, next) {
+  // Express Validation setup
 
-  if (!price || parseFloat(price) < 1) {
-    error.push("price should be postive integer only");
-  }
+  // 1. setup the rules
 
-  try {
-    new URL(imageUrl);
-  } catch (err) {
-    error.push("url should be valid only");
-  }
+  const rules = [
+    body("name").isEmpty().withMessage("Name is required"),
+    body("price")
+      .isFloat({ gt: 0 })
+      .withMessage("Price should be positive integer"),
+    body("url").isURL().withMessage("url should be valid"),
+  ];
 
-  if (error.length) {
-    return res.render("new-product", { erorMessage: error[0] });
+  // 2. run those rules
+
+  // these rules may include I/O operations so we should use promise to runing the rule
+
+  await Promise.all(rules.map((rule) => rule.run(req)));
+
+  // 3. check for error if it has
+
+  let valditionErrors = validationResult(req);
+  if (!valditionErrors.isEmpty()) {
+    return res.render("new-product", {
+      errorMessage: valditionErrors.array()[0].msg,
+    });
   }
   next();
 }

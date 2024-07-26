@@ -7,6 +7,8 @@ const port = 3100;
 
 const app = express();
 
+app.use(express.static("public"));
+
 // for parsing the form body
 
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +26,11 @@ app.use(express.static("src/views"));
 
 app.get("/", productControllerClass.getProduct);
 app.get("/new", productControllerClass.getNewProductView);
+app.get("/update-product/:id", productControllerClass.getUpdateProductView);
 app.post("/", validateRequest, productControllerClass.addNewProduct);
+app.post("/update-product", productControllerClass.updateProduct);
+
+app.post("/delete-product/:id", productControllerClass.deleteProduct);
 
 app.listen(port, () => {
   console.log("server is up & listening on port", port);
