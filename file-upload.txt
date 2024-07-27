@@ -1,0 +1,5 @@
+1. install multer (third party npm library)
+2. changes in the view
+3. add the new middleware to configure the multer
+4. add the newly created middleware to the route
+5. update the controller for the same route to handle the file

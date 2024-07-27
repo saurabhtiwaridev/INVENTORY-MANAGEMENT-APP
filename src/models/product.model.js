@@ -11,13 +11,13 @@ export default class ProductModel {
     return products;
   }
 
-  static add(newProductObj) {
+  static add(name, desc, price, imageUrl) {
     const newProduct = new ProductModel(
       products.length + 1,
-      newProductObj.name,
-      newProductObj.desc,
-      newProductObj.price,
-      newProductObj.imageUrl
+      name,
+      desc,
+      price,
+      imageUrl
     );
     products.push(newProduct);
   }

@@ -4,7 +4,7 @@
 <div class="alert alert-danger" role="alert"><%= erorMessage %></div>
 <% } %>
 
-<form method="post" action="/update-product">
+<form method="post" action="/update-product" enctype="multipart/form-data">
   <input
     type="text"
     class="form-control"
@@ -40,13 +40,14 @@
     />
   </div>
   <div class="mb-3">
+    <img src="<%=product.imageUrl %>" alt="productImage" />
     <label for="imageUrl" class="form-label">Product Image</label>
     <input
-      type="url"
+      type="file"
       class="form-control"
       id="imageUrl"
       name="imageUrl"
-      value="<%=product.imageUrl %>"
+      accept="images/*"
     />
   </div>
   <button type="submit" class="btn btn-primary">Update</button>

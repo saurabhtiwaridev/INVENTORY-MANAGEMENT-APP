@@ -17,7 +17,9 @@ export default class ProductController {
   }
 
   addNewProduct(req, res) {
-    ProductModel.add(req.body);
+    const { name, desc, price } = req.body;
+    const imageUrl = path.join("images", req.file.filename);
+    ProductModel.add(name, desc, price, imageUrl);
     const products = ProductModel.get();
     return res.render("product", { products });
   }
@@ -37,7 +39,16 @@ export default class ProductController {
   }
 
   updateProduct(req, res) {
-    ProductModel.update(req.body);
+    const { id, name, desc, price } = req.body;
+    const filename = req.file.filename;
+    const queryObject = {
+      id: id,
+      name: name,
+      desc: desc,
+      price: price,
+      imageUrl: path.join("images", filename),
+    };
+    ProductModel.update(queryObject);
     const products = ProductModel.get();
 
     return res.render("product", { products });
