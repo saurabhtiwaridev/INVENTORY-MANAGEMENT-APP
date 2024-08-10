@@ -7,12 +7,16 @@ import validateRequest from "./src/middlewares/validation.middleware.js";
 import { uploadFile } from "./src/middlewares/upload-file.middleware.js";
 import session from "express-session";
 import { auth } from "./src/middlewares/auth.middleware.js";
+import cookieParser from "cookie-parser";
+import { lastTimeVistMiddleware } from "./src/middlewares/last-time-visit.middleware.js";
 
 const port = 3100;
 
 const app = express();
 
 app.use(express.static("public"));
+app.use(cookieParser());
+app.use(lastTimeVistMiddleware);
 
 app.use(
   session({
